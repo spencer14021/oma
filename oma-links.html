@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OMA BUILDING — Contacto</title>
+<!--
+  ┌────────────────────────────────────────────────────────────┐
+  │  DEMO · OMA BUILDING — сторінка з посиланнями (link-in-bio) │
+  │  Заміни href і текст у кожній кнопці. Мітки: [[ ... ]]      │
+  └────────────────────────────────────────────────────────────┘
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ECE6DC; --paper-hi:#F5F1EA;
+    --ink:#191A1D; --ink-soft:#26282E;
+    --line:#CBC4B7; --line-strong:#B3AB9C;
+    --mute:#726C62; --steel:#1C4E5A; --steel-2:#2C6E7E; --amber:#C97B2C;
+    --f-display:"Bricolage Grotesque",sans-serif;
+    --f-body:"Inter",sans-serif; --f-mono:"Space Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--f-body); background:var(--ink); color:var(--paper);
+    min-height:100vh; display:flex; align-items:flex-start; justify-content:center;
+    padding:52px 20px 40px; -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0);
+    background-size:26px 26px;
+  }
+  a{color:inherit;text-decoration:none}
+
+  .card{width:100%;max-width:440px;text-align:center}
+
+  /* logo mark */
+  .mark{
+    width:64px;height:64px;margin:0 auto 28px;border:2px solid var(--paper);
+    display:grid;place-items:center;font-family:var(--f-mono);font-weight:700;
+    font-size:1.2rem;letter-spacing:.05em;
+    animation:pop .6s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--f-mono);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+    color:#7FB3BF;display:inline-flex;align-items:center;gap:.6em;margin-bottom:14px;
+  }
+  .eyebrow::before,.eyebrow::after{content:"";width:20px;height:1px;background:#7FB3BF;display:inline-block}
+  .eyebrow{margin-bottom:20px}
+
+  h1{font-family:var(--f-display);font-weight:800;font-size:2.4rem;letter-spacing:-.01em;line-height:1.06}
+  .tagline{color:#B8B2A8;font-size:.98rem;margin:22px auto 46px;max-width:34ch;line-height:1.65}
+  .tagline em{color:var(--amber);font-style:normal}
+
+  /* link buttons */
+  .links{display:flex;flex-direction:column;gap:17px}
+  .lnk{
+    display:flex;align-items:center;gap:16px;
+    background:var(--paper);color:var(--ink);
+    padding:17px 20px;border:1.5px solid var(--paper);
+    position:relative;overflow:hidden;
+    transition:transform .22s ease, background .22s ease, color .22s ease;
+  }
+  .lnk .ico{
+    width:26px;height:26px;flex:none;display:grid;place-items:center;
+    font-family:var(--f-mono);font-size:.8rem;font-weight:700;
+    border:1.5px solid currentColor;border-radius:50%;
+  }
+  .lnk .txt{flex:1;text-align:left}
+  .lnk .txt .t{display:block;font-family:var(--f-display);font-weight:700;font-size:1.05rem;line-height:1.1}
+  .lnk .txt .s{display:block;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;color:var(--mute);margin-top:5px}
+  .lnk .go{font-family:var(--f-mono);opacity:.5;transition:transform .22s ease,opacity .22s ease}
+  .lnk:hover{transform:translateY(-2px);background:var(--steel);color:var(--paper);border-color:var(--steel)}
+  .lnk:hover .txt .s{color:#A9CBD3}
+  .lnk:hover .go{opacity:1;transform:translateX(4px)}
+
+  /* empty placeholder link */
+  .lnk.empty{background:transparent;color:#6f6a61;border:1.5px dashed #3a3c44}
+  .lnk.empty .txt .s{color:#5b574f}
+  .lnk.empty:hover{transform:none;background:transparent;color:#8a857b;border-color:#4a4c55}
+  .lnk.empty:hover .go{transform:none;opacity:.5}
+
+  /* whatsapp brand green */
+  .lnk.whatsapp{background:#25D366;border-color:#25D366;color:#fff}
+  .lnk.whatsapp .txt .s{color:rgba(255,255,255,.85)}
+  .lnk.whatsapp:hover{background:#1DAA53;border-color:#1DAA53;color:#fff}
+
+  footer{margin-top:44px;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;color:#6f6a61}
+  footer a{color:#8a857b;text-decoration:underline;text-underline-offset:3px}
+
+  /* entrance animation */
+  .card>*{animation:rise .55s cubic-bezier(.2,.7,.2,1) both}
+  .eyebrow{animation-delay:.05s}
+  h1{animation-delay:.10s}
+  .tagline{animation-delay:.16s}
+  .links .lnk:nth-child(1){animation:rise .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:.22s}
+  .links .lnk:nth-child(2){animation:rise .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:.28s}
+  .links .lnk:nth-child(3){animation:rise .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:.34s}
+  .links .lnk:nth-child(4){animation:rise .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:.40s}
+  .links .lnk:nth-child(5){animation:rise .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:.46s}
+  .links .lnk:nth-child(6){animation:rise .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:.52s}
+  footer{animation:rise .5s ease both;animation-delay:.58s}
+
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes pop{from{opacity:0;transform:scale(.8) rotate(-8deg)}to{opacity:1;transform:none}}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important}
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="mark">OB</div>
+    <span class="eyebrow">Reformas · [[ ciudad ]]</span>
+    <h1>OMA BUILDING</h1>
+    <p class="tagline">Reformas integrales de viviendas y locales. <em>Trabajo limpio, plazos que se cumplen.</em></p>
+
+    <div class="links">
+
+      <!-- [[ ЛІНК: WhatsApp ]] — головна кнопка -->
+      <a class="lnk whatsapp" href="https://wa.me/34642460923" target="_blank" rel="noopener">
+        <span class="ico">W</span>
+        <span class="txt"><span class="t">WhatsApp</span><span class="s">+34 642 46 09 23</span></span>
+        <span class="go">→</span>
+      </a>
+
+      <!-- [[ ЛІНК: сайт ]] — веде на повний сайт -->
+      <a class="lnk" href="https://spencer14021.github.io/oma/" target="_blank" rel="noopener">
+        <span class="ico">↗</span>
+        <span class="txt"><span class="t">Sitio web</span><span class="s">Proyectos y servicios</span></span>
+        <span class="go">→</span>
+      </a>
+
+      <!-- [[ ЛІНК: Instagram ]] -->
+      <a class="lnk empty" href="#">
+        <span class="ico">IG</span>
+        <span class="txt"><span class="t">Instagram</span><span class="s">[[ @usuario ]]</span></span>
+        <span class="go">→</span>
+      </a>
+
+      <!-- [[ ЛІНК: Email ]] -->
+      <a class="lnk empty" href="#">
+        <span class="ico">@</span>
+        <span class="txt"><span class="t">Email</span><span class="s">[[ hola@omabuilding.es ]]</span></span>
+        <span class="go">→</span>
+      </a>
+
+      <!-- [[ ЛІНК: Teléfono ]] -->
+      <a class="lnk empty" href="#">
+        <span class="ico">T</span>
+        <span class="txt"><span class="t">Teléfono</span><span class="s">[[ +34 ... ]]</span></span>
+        <span class="go">→</span>
+      </a>
+
+    </div>
+
+    <footer>OMA BUILDING — Reformas &amp; construcción</footer>
+  </div>
+</body>
+</html>
