@@ -115,12 +115,27 @@
   .gal-item.empty{cursor:default}
   .gal-item.empty:hover .plate{border-color:var(--line)}
 
+  /* video tiles */
+  .gal-item .play{
+    position:absolute;inset:0;display:grid;place-items:center;z-index:3;pointer-events:none;
+  }
+  .gal-item .play i{
+    width:58px;height:58px;border-radius:50%;border:1.5px solid var(--cream);
+    background:rgba(27,5,16,.45);backdrop-filter:blur(3px);
+    display:grid;place-items:center;font-style:normal;font-size:1rem;color:var(--cream);
+    padding-left:4px;transition:.25s ease;
+  }
+  .gal-item:hover .play i{background:var(--pink);border-color:var(--pink);color:var(--plum-900);transform:scale(1.08)}
+  .gal-cap .vid{color:var(--pink);font-size:.66rem;letter-spacing:.14em}
+
   /* lightbox */
   .lb{position:fixed;inset:0;z-index:100;background:rgba(15,3,9,.96);
     display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .28s ease}
   .lb.open{display:flex}
   .lb.show{opacity:1}
-  .lb img{max-width:88vw;max-height:80vh;object-fit:contain;border:1px solid var(--line)}
+  .lb img,.lb video{max-width:88vw;max-height:80vh;object-fit:contain;border:1px solid var(--line)}
+  .lb video{background:#000}
+  .lb .hidden{display:none}
   .lb .lb-cap{position:absolute;bottom:26px;left:0;right:0;text-align:center;
     font-family:var(--f-mono);font-size:.76rem;letter-spacing:.1em;color:var(--mute);padding:0 20px}
   .lb .lb-cap b{color:var(--cream);font-weight:400}
@@ -161,7 +176,7 @@
     .gal-grid{grid-template-columns:1fr 1fr;gap:14px}
     .lb .lb-prev{left:12px} .lb .lb-next{right:12px}
     .lb button{width:42px;height:42px}
-    .lb img{max-width:94vw}
+    .lb img,.lb video{max-width:94vw}
   }
   @media(prefers-reduced-motion:reduce){
     .reveal{transition:none!important;opacity:1!important;transform:none!important}
@@ -208,6 +223,7 @@
     <button class="chip" data-f="exterior">Exteriores</button>
     <button class="chip" data-f="local">Locales</button>
     <button class="chip" data-f="detalle">Detalles</button>
+    <button class="chip" data-f="video">Vídeos</button>
   </div>
 </div>
 
@@ -236,6 +252,22 @@
           <img src="terraza-01.jpg" alt="Terraza con vistas al mar" loading="lazy">
           <div class="zoom">VER ↗</div>
         </div>
+
+      <div class="gal-item reveal" data-cat="bano" data-cap="Baño en mármol con ducha de obra">
+        <div class="plate">
+          <img src="bano-06.jpg" alt="Baño en mármol con ducha de obra" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+
+      <div class="gal-item reveal" data-cat="salon" data-cap="Salón y cocina abierta">
+        <div class="plate">
+          <img src="salon-03.jpg" alt="Salón y cocina abierta" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Salón y cocina abierta</span></div>
+      </div>
+        <div class="gal-cap"><span>Baño en mármol con ducha de obra</span></div>
+      </div>
         <div class="gal-cap"><span>Terraza con vistas al mar</span></div>
       </div>
 
@@ -375,6 +407,99 @@
         <div class="gal-cap"><span>Papel pintado geométrico</span></div>
       </div>
 
+      <div class="gal-item reveal" data-cat="dormitorio" data-cap="Dormitorio con mural panorámico">
+        <div class="plate">
+          <img src="dormitorio-04.jpg" alt="Dormitorio con mural panorámico" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Dormitorio con mural panorámico</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="dormitorio" data-cap="Mural y cabecero tapizado">
+        <div class="plate">
+          <img src="dormitorio-05.jpg" alt="Mural y cabecero tapizado" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Mural y cabecero tapizado</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="dormitorio" data-cap="Dormitorio principal — cabecero capitoné">
+        <div class="plate">
+          <img src="dormitorio-06.jpg" alt="Dormitorio principal — cabecero capitoné" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Dormitorio principal — cabecero capitoné</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="salon" data-cap="Salón con zona de estar">
+        <div class="plate">
+          <img src="salon-04.jpg" alt="Salón con zona de estar" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Salón con zona de estar</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="dormitorio" data-cap="Dormitorio en tonos cálidos">
+        <div class="plate">
+          <img src="dormitorio-07.jpg" alt="Dormitorio en tonos cálidos" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Dormitorio en tonos cálidos</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="salon" data-cap="Cocina office y comedor">
+        <div class="plate">
+          <img src="salon-02.jpg" alt="Cocina office y comedor" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Cocina office y comedor</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="integral" data-type="video"
+           data-src="video-01.mp4" data-cap="Recorrido por la vivienda">
+        <div class="plate">
+          <img src="video-01.jpg" alt="Recorrido por la vivienda" loading="lazy">
+          <div class="play"><i>▶</i></div>
+        </div>
+        <div class="gal-cap"><span>Recorrido por la vivienda</span><span class="vid">VÍDEO</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="integral" data-type="video"
+           data-src="video-03.mp4" data-cap="Detalles de acabados">
+        <div class="plate">
+          <img src="video-03.jpg" alt="Detalles de acabados" loading="lazy">
+          <div class="play"><i>▶</i></div>
+        </div>
+        <div class="gal-cap"><span>Detalles de acabados</span><span class="vid">VÍDEO</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="integral" data-type="video"
+           data-src="video-04.mp4" data-cap="Recorrido — salón y cocina">
+        <div class="plate">
+          <img src="video-04.jpg" alt="Recorrido — salón y cocina" loading="lazy">
+          <div class="play"><i>▶</i></div>
+        </div>
+        <div class="gal-cap"><span>Recorrido — salón y cocina</span><span class="vid">VÍDEO</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="integral" data-type="video"
+           data-src="video-05.mp4" data-cap="Vista del interior">
+        <div class="plate">
+          <img src="video-05.jpg" alt="Vista del interior" loading="lazy">
+          <div class="play"><i>▶</i></div>
+        </div>
+        <div class="gal-cap"><span>Vista del interior</span><span class="vid">VÍDEO</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="integral" data-type="video"
+           data-src="video-02.mp4" data-cap="Recorrido vertical">
+        <div class="plate">
+          <img src="video-02.jpg" alt="Recorrido vertical" loading="lazy">
+          <div class="play"><i>▶</i></div>
+        </div>
+        <div class="gal-cap"><span>Recorrido vertical</span><span class="vid">VÍDEO</span></div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -401,6 +526,7 @@
   <button class="lb-close" id="lbClose" aria-label="Cerrar">✕</button>
   <button class="lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
   <img id="lbImg" src="" alt="" />
+  <video id="lbVid" class="hidden" controls playsinline preload="metadata"></video>
   <button class="lb-next" id="lbNext" aria-label="Siguiente">›</button>
   <div class="lb-cap"><b id="lbCap"></b></div>
 </div>
@@ -430,32 +556,45 @@
     chip.classList.add('on');
     const f = chip.dataset.f;
     document.querySelectorAll('.gal-item').forEach(el=>{
-      el.classList.toggle('hide', f !== 'all' && el.dataset.cat !== f);
+      const isVid = el.dataset.type === 'video';
+      const match = f === 'all' || el.dataset.cat === f || (f === 'video' && isVid);
+      el.classList.toggle('hide', !match);
     });
   });
 
   /* лайтбокс */
   (function(){
-    const lb = document.getElementById('lb');
+    const lb  = document.getElementById('lb');
     const img = document.getElementById('lbImg');
+    const vid = document.getElementById('lbVid');
     const cap = document.getElementById('lbCap');
     const cnt = document.getElementById('lbCount');
     let list = [], i = 0;
 
     function visible(){
       return [...document.querySelectorAll('.gal-item')]
-        .filter(el => el.querySelector('img') && !el.classList.contains('hide'));
+        .filter(el => !el.classList.contains('hide') &&
+                      (el.dataset.type === 'video' || el.querySelector('img')));
     }
     function render(){
       const el = list[i];
-      img.src = el.querySelector('img').getAttribute('src');
-      img.alt = el.dataset.cap || '';
+      vid.pause();
+      if(el.dataset.type === 'video'){
+        img.classList.add('hidden');
+        vid.classList.remove('hidden');
+        vid.src = el.dataset.src;
+        vid.play().catch(()=>{});
+      } else {
+        vid.classList.add('hidden'); vid.removeAttribute('src');
+        img.classList.remove('hidden');
+        img.src = el.querySelector('img').getAttribute('src');
+        img.alt = el.dataset.cap || '';
+      }
       cap.textContent = el.dataset.cap || '';
       cnt.textContent = (i+1) + ' / ' + list.length;
     }
     function open(el){
-      list = visible();
-      i = list.indexOf(el);
+      list = visible(); i = list.indexOf(el);
       if(i < 0) return;
       render();
       lb.classList.add('open');
@@ -463,15 +602,16 @@
       document.body.style.overflow = 'hidden';
     }
     function close(){
+      vid.pause(); vid.removeAttribute('src');
       lb.classList.remove('show');
       setTimeout(()=>{ lb.classList.remove('open'); img.src=''; }, 280);
       document.body.style.overflow = '';
     }
-    function step(d){ if(!list.length) return; i = (i + d + list.length) % list.length; render(); }
+    function step(d){ if(!list.length) return; i = (i+d+list.length)%list.length; render(); }
 
     document.getElementById('grid').addEventListener('click', e=>{
       const el = e.target.closest('.gal-item');
-      if(el && el.querySelector('img')) open(el);
+      if(el && (el.dataset.type === 'video' || el.querySelector('img'))) open(el);
     });
     document.getElementById('lbClose').addEventListener('click', close);
     document.getElementById('lbPrev').addEventListener('click', e=>{e.stopPropagation();step(-1)});
