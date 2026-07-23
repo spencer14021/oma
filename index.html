@@ -202,6 +202,16 @@
   .gal-item.empty{cursor:default}
   .gal-item.empty:hover .plate{border-color:var(--line)}
 
+  /* ── gallery CTA (на головній замість сітки) ───────────── */
+  .gal-cta{border:1px solid var(--line);background:var(--plum-900);position:relative;overflow:hidden}
+  .gal-cta::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(circle at 82% 30%, rgba(217,112,159,.16), transparent 62%)}
+  .gal-cta::before{content:"";position:absolute;top:16px;left:16px;width:20px;height:20px;
+    border:1px solid var(--pink);border-right:0;border-bottom:0}
+  .gal-cta-inner{position:relative;z-index:2;padding:66px 40px;text-align:center;
+    display:flex;flex-direction:column;align-items:center;gap:28px}
+  .gal-cta-inner p{color:var(--mute);max-width:44ch;font-size:1.02rem}
+
   /* ── lightbox ──────────────────────────────────────────── */
   .lb{
     position:fixed;inset:0;z-index:100;background:rgba(15,3,9,.96);
@@ -407,71 +417,16 @@
     <div class="sec-head">
       <div>
         <span class="eyebrow reveal">Trabajos recientes</span>
-        <h2 class="reveal" data-d="1">Antes y después.</h2>
+        <h2 class="reveal" data-d="1">Nuestros proyectos.</h2>
       </div>
       <a class="num reveal" href="galeria.html" style="color:var(--pink)">VER GALERÍA COMPLETA →</a>
     </div>
 
-    <!--
-      ЯК ДОДАТИ ФОТО:
-      всередині <div class="plate"> заміни блок <div class="ph">...</div>
-      на:   <img src="fotos/nazva.jpg" alt="">  <div class="zoom">VER ↗</div>
-      і прибери клас "empty" з <div class="gal-item empty ...">
-      Фото клади в папку fotos/ поруч із index.html
-    -->
-    <div class="gal-grid">
-
-      <div class="gal-item empty reveal" data-cap="Reforma integral">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Reforma integral</span><span class="tag">[[ foto ]]</span></div>
+    <div class="gal-cta reveal">
+      <div class="gal-cta-inner">
+        <p>Reformas integrales, cocinas, baños y locales — todos nuestros trabajos en un solo sitio.</p>
+        <a class="btn" href="galeria.html">Ver galería completa →</a>
       </div>
-
-      <div class="gal-item empty reveal" data-d="1" data-cap="Cocina">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Cocina</span><span class="tag">[[ foto ]]</span></div>
-      </div>
-
-      <div class="gal-item empty reveal" data-d="2" data-cap="Baño">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Baño</span><span class="tag">[[ foto ]]</span></div>
-      </div>
-
-      <div class="gal-item empty reveal" data-cap="Salón">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Salón</span><span class="tag">[[ foto ]]</span></div>
-      </div>
-
-      <div class="gal-item empty reveal" data-d="1" data-cap="Local comercial">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Local comercial</span><span class="tag">[[ foto ]]</span></div>
-      </div>
-
-      <div class="gal-item empty reveal" data-d="2" data-cap="Dormitorio">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Dormitorio</span><span class="tag">[[ foto ]]</span></div>
-      </div>
-
-      <div class="gal-item empty reveal" data-cap="Terraza">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Terraza</span><span class="tag">[[ foto ]]</span></div>
-      </div>
-
-      <div class="gal-item empty reveal" data-d="1" data-cap="Pasillo">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Pasillo</span><span class="tag">[[ foto ]]</span></div>
-      </div>
-
-      <div class="gal-item empty reveal" data-d="2" data-cap="Fachada">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Fachada</span><span class="tag">[[ foto ]]</span></div>
-      </div>
-
-    </div>
-
-    <div style="text-align:center;margin-top:44px" class="reveal">
-      <a class="btn" href="galeria.html">Ver galería completa →</a>
-    </div>
-
     </div>
   </div>
 </section>
