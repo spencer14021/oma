@@ -117,8 +117,9 @@
     content:"";position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(circle at 78% 32%, rgba(217,112,159,.16), transparent 58%);
   }
-  .hero .wrap{padding-top:92px;padding-bottom:92px;position:relative;z-index:2}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero .wrap{padding-top:104px;padding-bottom:104px;position:relative;z-index:2}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:0;align-items:center;min-height:min(58vh,520px)}
+  .hero-grid>div{max-width:62ch}
   .hero h1{
     font-family:var(--f-display);font-weight:700;
     font-size:clamp(2.6rem,6vw,4.6rem);line-height:.98;letter-spacing:-.02em;
@@ -131,7 +132,7 @@
   /* watermark logo behind hero */
   .hero-mark{
     position:absolute;right:-90px;top:50%;transform:translateY(-50%);
-    width:min(620px,58vw);opacity:.07;pointer-events:none;z-index:1;
+    width:min(560px,50vw);opacity:.11;pointer-events:none;z-index:1;
     filter:saturate(1.2);
   }
 
@@ -290,9 +291,7 @@
   .reveal[data-d="4"]{transition-delay:.32s}
 
   @media(max-width:900px){
-    .hero-grid{grid-template-columns:1fr;gap:40px}
-    .hero .plate-col{max-width:360px}
-    .hero-mark{display:none}
+    .hero-mark{opacity:.07}
     .svc-grid{grid-template-columns:1fr 1fr}
     .steps{grid-template-columns:1fr 1fr;gap:28px}
     .about{grid-template-columns:1fr;gap:36px}
@@ -359,13 +358,6 @@
           <a class="btn" href="https://wa.me/34643348423" target="_blank" rel="noopener">Pedir presupuesto →</a>
           <a class="btn ghost" href="#proyectos">Ver proyectos</a>
         </div>
-      </div>
-      <div class="plate-col reveal" data-d="2">
-        <!-- [[ ФОТО: головне фото проєкту ]] -->
-        <div class="plate">
-          <div class="ph"><span class="ico">▦</span>Foto principal<br>1200 × 1500</div>
-        </div>
-        <div class="dim hero-plate-dim"><span>W</span><span class="rule"></span><span>1200 px</span></div>
       </div>
     </div>
   </div>

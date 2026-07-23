@@ -9,13 +9,8 @@
   │  OMA BUILDING · ГАЛЕРЕЯ (окрема сторінка)                    │
   │  Файл має називатись: galeria.html                          │
   │                                                              │
-  │  ЯК ДОДАТИ ФОТО:                                            │
-  │  1. створи в репо папку fotos/ і залий туди знімки           │
-  │  2. у картці заміни <div class="ph">...</div> на:            │
-  │       <img src="fotos/nazva.jpg" alt="">                     │
-  │       <div class="zoom">VER ↗</div>                          │
-  │  3. прибери слово empty з <div class="gal-item empty ...">   │
-  │  Карток можна скільки завгодно — просто копіюй блок.         │
+  │  ФОТО лежать поруч із цим файлом, у корені репозиторію.      │
+  │  Щоб додати ще — скопіюй блок .gal-item і зміни src/підпис.   │
   └─────────────────────────────────────────────────────────────┘
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -206,10 +201,13 @@
 <div class="wrap">
   <div class="filters" id="filters">
     <button class="chip on" data-f="all">Todos</button>
-    <button class="chip" data-f="integral">Reformas integrales</button>
     <button class="chip" data-f="cocina">Cocinas</button>
     <button class="chip" data-f="bano">Baños</button>
+    <button class="chip" data-f="dormitorio">Dormitorios</button>
+    <button class="chip" data-f="salon">Salones</button>
+    <button class="chip" data-f="exterior">Exteriores</button>
     <button class="chip" data-f="local">Locales</button>
+    <button class="chip" data-f="detalle">Detalles</button>
   </div>
 </div>
 
@@ -217,64 +215,164 @@
   <div class="wrap">
     <div class="gal-grid" id="grid">
 
-      <div class="gal-item empty reveal" data-cat="integral" data-cap="Reforma integral — Salón">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Reforma integral — Salón</span><span class="tag">[[ foto ]]</span></div>
+      <div class="gal-item reveal" data-cat="cocina" data-cap="Cocina en nogal con encimera de mármol">
+        <div class="plate">
+          <img src="cocina-01.jpg" alt="Cocina en nogal con encimera de mármol" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Cocina en nogal con encimera de mármol</span></div>
       </div>
 
-      <div class="gal-item empty reveal" data-cat="cocina" data-cap="Cocina moderna">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Cocina moderna</span><span class="tag">[[ foto ]]</span></div>
+      <div class="gal-item reveal" data-cat="bano" data-cap="Baño completo con ducha a ras de suelo">
+        <div class="plate">
+          <img src="bano-01.jpg" alt="Baño completo con ducha a ras de suelo" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Baño completo con ducha a ras de suelo</span></div>
       </div>
 
-      <div class="gal-item empty reveal" data-cat="bano" data-cap="Baño completo">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Baño completo</span><span class="tag">[[ foto ]]</span></div>
+      <div class="gal-item reveal" data-cat="exterior" data-cap="Terraza con vistas al mar">
+        <div class="plate">
+          <img src="terraza-01.jpg" alt="Terraza con vistas al mar" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Terraza con vistas al mar</span></div>
       </div>
 
-      <div class="gal-item empty reveal" data-cat="integral" data-cap="Vivienda completa">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Vivienda completa</span><span class="tag">[[ foto ]]</span></div>
+      <div class="gal-item reveal" data-cat="detalle" data-cap="Recibidor con panel de lamas de madera">
+        <div class="plate">
+          <img src="detalle-04.jpg" alt="Recibidor con panel de lamas de madera" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Recibidor con panel de lamas de madera</span></div>
       </div>
 
-      <div class="gal-item empty reveal" data-cat="cocina" data-cap="Cocina a medida">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Cocina a medida</span><span class="tag">[[ foto ]]</span></div>
+      <div class="gal-item reveal" data-cat="cocina" data-cap="Isla de cocina con barra de desayuno">
+        <div class="plate">
+          <img src="cocina-02.jpg" alt="Isla de cocina con barra de desayuno" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Isla de cocina con barra de desayuno</span></div>
       </div>
 
-      <div class="gal-item empty reveal" data-cat="bano" data-cap="Baño con ducha">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Baño con ducha</span><span class="tag">[[ foto ]]</span></div>
+      <div class="gal-item reveal" data-cat="salon" data-cap="Salón con iluminación decorativa">
+        <div class="plate">
+          <img src="salon-01.jpg" alt="Salón con iluminación decorativa" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Salón con iluminación decorativa</span></div>
       </div>
 
-      <div class="gal-item empty reveal" data-cat="local" data-cap="Local comercial">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Local comercial</span><span class="tag">[[ foto ]]</span></div>
+      <div class="gal-item reveal" data-cat="bano" data-cap="Baño con doble lavabo de mármol">
+        <div class="plate">
+          <img src="bano-02.jpg" alt="Baño con doble lavabo de mármol" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Baño con doble lavabo de mármol</span></div>
       </div>
 
-      <div class="gal-item empty reveal" data-cat="integral" data-cap="Dormitorio">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Dormitorio</span><span class="tag">[[ foto ]]</span></div>
+      <div class="gal-item reveal" data-cat="dormitorio" data-cap="Dormitorio principal">
+        <div class="plate">
+          <img src="dormitorio-01.jpg" alt="Dormitorio principal" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Dormitorio principal</span></div>
       </div>
 
-      <div class="gal-item empty reveal" data-cat="local" data-cap="Oficina">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Oficina</span><span class="tag">[[ foto ]]</span></div>
+      <div class="gal-item reveal" data-cat="detalle" data-cap="Espejo retroiluminado y mueble en nogal">
+        <div class="plate">
+          <img src="detalle-01.jpg" alt="Espejo retroiluminado y mueble en nogal" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Espejo retroiluminado y mueble en nogal</span></div>
       </div>
 
-      <div class="gal-item empty reveal" data-cat="integral" data-cap="Pasillo y entrada">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Pasillo y entrada</span><span class="tag">[[ foto ]]</span></div>
+      <div class="gal-item reveal" data-cat="cocina" data-cap="Cocina con despensa acristalada">
+        <div class="plate">
+          <img src="cocina-03.jpg" alt="Cocina con despensa acristalada" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Cocina con despensa acristalada</span></div>
       </div>
 
-      <div class="gal-item empty reveal" data-cat="cocina" data-cap="Office y comedor">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Office y comedor</span><span class="tag">[[ foto ]]</span></div>
+      <div class="gal-item reveal" data-cat="local" data-cap="Restaurante — reforma de local">
+        <div class="plate">
+          <img src="local-01.jpg" alt="Restaurante — reforma de local" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Restaurante — reforma de local</span></div>
       </div>
 
-      <div class="gal-item empty reveal" data-cat="integral" data-cap="Terraza">
-        <div class="plate"><div class="ph"><span class="ico">▦</span>Foto<br>1200 × 900</div></div>
-        <div class="gal-cap"><span>Terraza</span><span class="tag">[[ foto ]]</span></div>
+      <div class="gal-item reveal" data-cat="bano" data-cap="Lavabo doble tallado en mármol">
+        <div class="plate">
+          <img src="bano-05.jpg" alt="Lavabo doble tallado en mármol" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Lavabo doble tallado en mármol</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="dormitorio" data-cap="Cabecero tapizado a medida">
+        <div class="plate">
+          <img src="dormitorio-02.jpg" alt="Cabecero tapizado a medida" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Cabecero tapizado a medida</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="cocina" data-cap="Cocina con isla de mármol natural">
+        <div class="plate">
+          <img src="cocina-04.jpg" alt="Cocina con isla de mármol natural" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Cocina con isla de mármol natural</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="local" data-cap="Sala diáfana con iluminación LED">
+        <div class="plate">
+          <img src="local-02.jpg" alt="Sala diáfana con iluminación LED" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Sala diáfana con iluminación LED</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="bano" data-cap="Aseo con encimera de mármol">
+        <div class="plate">
+          <img src="bano-03.jpg" alt="Aseo con encimera de mármol" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Aseo con encimera de mármol</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="dormitorio" data-cap="Rincón de lectura">
+        <div class="plate">
+          <img src="dormitorio-03.jpg" alt="Rincón de lectura" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Rincón de lectura</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="bano" data-cap="Lavabo tallado en mármol">
+        <div class="plate">
+          <img src="bano-04.jpg" alt="Lavabo tallado en mármol" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Lavabo tallado en mármol</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="detalle" data-cap="Alicatado artesanal">
+        <div class="plate">
+          <img src="detalle-02.jpg" alt="Alicatado artesanal" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Alicatado artesanal</span></div>
+      </div>
+
+      <div class="gal-item reveal" data-cat="detalle" data-cap="Papel pintado geométrico">
+        <div class="plate">
+          <img src="detalle-03.jpg" alt="Papel pintado geométrico" loading="lazy">
+          <div class="zoom">VER ↗</div>
+        </div>
+        <div class="gal-cap"><span>Papel pintado geométrico</span></div>
       </div>
 
     </div>
