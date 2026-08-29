@@ -183,6 +183,29 @@
   .step::before{content:"";position:absolute;top:-1px;left:0;width:34px;height:2px;background:var(--pink)}
 
   /* ── gallery preview CTA ───────────────────────────────── */
+  /* ── розділ 3D-моделей ─────────────────────────────────── */
+  .m3d{margin-top:38px;border:1px solid var(--line);border-radius:3px;overflow:hidden;
+    background:linear-gradient(168deg,#F6F1EE,#ECE2DE)}
+  .m3d-stage{position:relative;height:clamp(380px,62vh,640px)}
+  .m3d-stage canvas{position:absolute;inset:0}
+  .m3d-state{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;
+    font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);transition:opacity .5s ease}
+  .m3d.is-ready .m3d-state{opacity:0;pointer-events:none}
+  .m3d-hint{position:absolute;left:18px;bottom:16px;font-size:.68rem;letter-spacing:.08em;color:var(--ink-soft);opacity:.8}
+  .m3d-bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+    padding:12px 14px;border-top:1px solid var(--line);background:var(--paper)}
+  .m3d-bar button{font-family:var(--f-body);font-size:.76rem;letter-spacing:.02em;padding:9px 13px;
+    border:1px solid var(--line);background:transparent;color:var(--ink-soft);cursor:pointer;
+    border-radius:2px;transition:.18s ease}
+  .m3d-bar button:hover{color:var(--ink);border-color:var(--ink)}
+  .m3d-bar button:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+  .m3d-bar button.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  .m3d-bar .sp{flex:1 1 auto}
+  .m3d-src{display:inline-flex;align-items:center;gap:9px;margin-top:20px;
+    font-size:.84rem;color:var(--pink);padding-bottom:3px;border-bottom:1px solid transparent;transition:.18s ease}
+  .m3d-src:hover{border-bottom-color:var(--pink)}
+  .m3d-src svg{flex:none}
+
   .gal-cta{border:1px solid var(--line);background:var(--paper-2);position:relative;overflow:hidden}
   .gal-cta-inner{position:relative;z-index:2;padding:70px 40px;text-align:center;
     display:flex;flex-direction:column;align-items:center;gap:28px}
@@ -344,6 +367,7 @@
       <a href="#servicios" data-i18n="n_serv">Servicios</a>
       <a href="#proceso" data-i18n="n_proc">Proceso</a>
       <a href="#proyectos" data-i18n="n_proj">Proyectos</a>
+      <a href="#modelos3d" data-i18n="n_m3d">3D</a>
       <a href="galeria.html" data-i18n="n_gal">Galería</a>
       <a href="#equipo" data-i18n="n_team">Equipo</a>
       <a href="#contacto" data-i18n="n_cont">Contacto</a>
@@ -431,6 +455,44 @@
       <div class="gal-cta-inner">
         <p data-i18n="pj_p">Reformas integrales, cocinas, baños y locales — todos nuestros trabajos en un solo sitio.</p>
         <a class="btn" href="galeria.html" data-i18n="pj_btn">Ver galería completa →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MODELOS 3D ═══════════════════════════════════════════ -->
+<section class="sec-pad alt" id="modelos3d">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow reveal" data-i18n="m3_eye">Modelos 3D</span>
+        <h2 class="reveal" data-d="1" data-i18n="m3_h2">Entra en la obra antes de empezarla.</h2>
+      </div>
+    </div>
+    <p class="reveal" style="color:var(--ink-soft);max-width:62ch" data-i18n="m3_lead">Reconstruimos cada reforma en tres dimensiones. Este es el piso del reportaje «Diseño &amp; confort»: salón-comedor con cocina abierta al fondo, hall con armarios a medida, dos dormitorios y baño tipo spa. Gira el piso, acércate y enciende las luces.</p>
+    <a class="m3d-src reveal" href="https://www.instagram.com/p/DbdpM2WDPUn/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6">
+        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+        <circle cx="12" cy="12" r="4"></circle>
+        <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"></circle>
+      </svg>
+      <span data-i18n="m3_src">Ver el reportaje original en Instagram</span>
+    </a>
+
+    <div class="m3d reveal" id="m3d">
+      <div class="m3d-stage" id="m3dStage">
+        <div class="m3d-state" id="m3dState" data-i18n="m3_load">Cargando modelo…</div>
+        <div class="m3d-hint" data-i18n="m3_hint">Arrastra para girar · rueda para acercar</div>
+      </div>
+      <div class="m3d-bar" id="m3dBar">
+        <button data-v="all" class="on" data-i18n="m3_v_all">Vista general</button>
+        <button data-v="salon" data-i18n="m3_v_salon">Salón</button>
+        <button data-v="cocina" data-i18n="m3_v_cocina">Cocina</button>
+        <button data-v="dorm1" data-i18n="m3_v_d1">Dormitorio 1</button>
+        <button data-v="dorm2" data-i18n="m3_v_d2">Dormitorio 2</button>
+        <button data-v="bano" data-i18n="m3_v_bano">Baño</button>
+        <span class="sp"></span>
+        <button id="m3dNight" data-i18n="m3_night">Encender luces</button>
       </div>
     </div>
   </div>
@@ -619,7 +681,7 @@
 </style>
 
 <script>
-const I18N={"es": {"n_serv": "Servicios", "n_proc": "Proceso", "n_proj": "Proyectos", "n_gal": "Galería", "n_team": "Equipo", "n_cont": "Contacto", "brand_sub": "REFORMAS", "h_kick": "Reformas · Construcción · Provincia de Málaga", "h_h1": "Transformamos espacios,<br>no solo <em>paredes</em>.", "h_lead": "Reformas integrales de viviendas y locales. Trabajo limpio, plazos que se cumplen y acabados de los que presumir.", "h_cta1": "Pedir presupuesto →", "h_cta2": "Ver proyectos", "s_eye": "Qué hacemos", "s_h2": "Un solo equipo para toda la obra.", "sv1t": "Reformas integrales", "sv1p": "Proyecto completo de principio a fin: derribo, obra, instalaciones y acabados.", "sv2t": "Cocinas", "sv2p": "Diseño y montaje de cocinas a medida, con mobiliario, encimeras e iluminación.", "sv3t": "Baños", "sv3p": "Renovación completa: fontanería, alicatado, sanitarios y mamparas.", "sv4t": "Pintura y acabados", "sv4p": "Alisado de paredes, pintura, pladur y detalles que marcan la diferencia.", "sv5t": "Albañilería", "sv5p": "Tabiques, solados, revestimientos y trabajos de obra a medida.", "sv6t": "Electricidad y fontanería", "sv6p": "Instalaciones nuevas y reparaciones con boletín y garantía.", "p_eye": "Cómo trabajamos", "p_h2": "De la idea a las llaves.", "st1t": "Consulta y presupuesto", "st1p": "Visitamos el espacio, escuchamos la idea y entregamos un presupuesto claro, sin sorpresas.", "st2t": "Diseño y planificación", "st2p": "Definimos materiales, plazos y planos. Sabes qué pasa cada semana.", "st3t": "Ejecución de obra", "st3p": "Un equipo, un responsable. Obra limpia y comunicación constante.", "st4t": "Entrega y garantía", "st4p": "Revisamos juntos el resultado. Entregamos con garantía por escrito.", "pj_eye": "Trabajos recientes", "pj_h2": "Nuestros proyectos.", "pj_more": "VER GALERÍA COMPLETA →", "pj_p": "Reformas integrales, cocinas, baños y locales — todos nuestros trabajos en un solo sitio.", "pj_btn": "Ver galería completa →", "ab_eye": "La empresa", "ab_h2": "Obra bien hecha, dicha en cristiano.", "ab_p1": "OMA BUILDING es un equipo de reformas afincado en la provincia de Málaga. Nos encargamos de todo el proceso para que tú solo tengas que decidir cómo quieres que quede.", "ab_p2": "Sin subcontratas descontroladas, sin presupuestos que se disparan. Un responsable de obra, comunicación directa y un resultado del que presumir.", "stat1": "Años de experiencia", "stat2": "Reformas entregadas", "stat3": "Obra propia", "stat4": "Años de garantía", "eq_eye": "Quiénes somos", "eq_h2": "El equipo detrás de la obra.", "role1": "Propietario", "role2": "Arquitecto", "role3": "Diseñador", "c_eye": "Hablemos", "c_h2": "¿Tienes un proyecto en mente?", "c_sub": "Cuéntanos qué quieres reformar y te damos un presupuesto sin compromiso.", "c_btn": "Escríbenos por WhatsApp →", "foot_loc": "Reformas &amp; construcción — Provincia de Málaga"}, "en": {"n_serv": "Services", "n_proc": "Process", "n_proj": "Projects", "n_gal": "Gallery", "n_team": "Team", "n_cont": "Contact", "brand_sub": "RENOVATIONS", "h_kick": "Renovations · Construction · Province of Málaga", "h_h1": "We transform spaces,<br>not just <em>walls</em>.", "h_lead": "Full renovations of homes and commercial spaces. Clean work, deadlines that are met, and finishes worth showing off.", "h_cta1": "Get a quote →", "h_cta2": "See projects", "s_eye": "What we do", "s_h2": "One team for the whole job.", "sv1t": "Full renovations", "sv1p": "A complete project from start to finish: demolition, building work, installations and finishes.", "sv2t": "Kitchens", "sv2p": "Custom kitchen design and fitting, with cabinetry, worktops and lighting.", "sv3t": "Bathrooms", "sv3p": "Complete renovation: plumbing, tiling, sanitary ware and screens.", "sv4t": "Painting & finishes", "sv4p": "Wall smoothing, painting, plasterboard and the details that make the difference.", "sv5t": "Masonry", "sv5p": "Partitions, flooring, cladding and custom building work.", "sv6t": "Electrics & plumbing", "sv6p": "New installations and repairs with certification and warranty.", "p_eye": "How we work", "p_h2": "From idea to keys.", "st1t": "Consultation & quote", "st1p": "We visit the space, listen to your idea and give a clear quote, no surprises.", "st2t": "Design & planning", "st2p": "We define materials, timelines and plans. You know what happens each week.", "st3t": "Building work", "st3p": "One team, one lead. Clean work and constant communication.", "st4t": "Handover & warranty", "st4p": "We review the result together. We hand over with a written warranty.", "pj_eye": "Recent work", "pj_h2": "Our projects.", "pj_more": "SEE FULL GALLERY →", "pj_p": "Full renovations, kitchens, bathrooms and commercial spaces — all our work in one place.", "pj_btn": "See full gallery →", "ab_eye": "The company", "ab_h2": "Work done right, in plain terms.", "ab_p1": "OMA BUILDING is a renovation team based in the province of Málaga. We handle the whole process, so all you have to decide is how you want it to look.", "ab_p2": "No runaway subcontractors, no budgets that blow up. One site manager, direct communication and a result to be proud of.", "stat1": "Years of experience", "stat2": "Renovations delivered", "stat3": "In-house work", "stat4": "Years of warranty", "eq_eye": "Who we are", "eq_h2": "The team behind the work.", "role1": "Owner", "role2": "Architect", "role3": "Designer", "c_eye": "Let's talk", "c_h2": "Have a project in mind?", "c_sub": "Tell us what you want to renovate and we'll give you a quote, no commitment.", "c_btn": "Message us on WhatsApp →", "foot_loc": "Renovations & construction — Province of Málaga"}, "uk": {"n_serv": "Послуги", "n_proc": "Процес", "n_proj": "Проєкти", "n_gal": "Галерея", "n_team": "Команда", "n_cont": "Контакти", "brand_sub": "РЕМОНТИ", "h_kick": "Ремонт · Будівництво · Провінція Малага", "h_h1": "Перетворюємо простір,<br>а не лише <em>стіни</em>.", "h_lead": "Комплексний ремонт квартир і приміщень. Чиста робота, дотримання строків і оздоблення, яким хочеться хизуватися.", "h_cta1": "Отримати кошторис →", "h_cta2": "Дивитись проєкти", "s_eye": "Що ми робимо", "s_h2": "Одна команда на весь обʼєкт.", "sv1t": "Комплексний ремонт", "sv1p": "Повний проєкт від початку до кінця: демонтаж, роботи, комунікації та оздоблення.", "sv2t": "Кухні", "sv2p": "Проєктування й монтаж кухонь під замовлення — меблі, стільниці, освітлення.", "sv3t": "Ванні кімнати", "sv3p": "Повне оновлення: сантехніка, плитка, сантехвироби та перегородки.", "sv4t": "Фарбування й оздоблення", "sv4p": "Вирівнювання стін, фарбування, гіпсокартон і деталі, що вирішують.", "sv5t": "Мурування", "sv5p": "Перегородки, підлоги, облицювання та роботи під замовлення.", "sv6t": "Електрика й сантехніка", "sv6p": "Нові комунікації та ремонт із документами й гарантією.", "p_eye": "Як ми працюємо", "p_h2": "Від ідеї до ключів.", "st1t": "Консультація та кошторис", "st1p": "Оглядаємо простір, вислуховуємо ідею й даємо чіткий кошторис без сюрпризів.", "st2t": "Проєкт і планування", "st2p": "Визначаємо матеріали, строки та плани. Ви знаєте, що відбувається щотижня.", "st3t": "Виконання робіт", "st3p": "Одна команда, один відповідальний. Чиста робота й постійний звʼязок.", "st4t": "Здача та гарантія", "st4p": "Разом переглядаємо результат. Здаємо з письмовою гарантією.", "pj_eye": "Останні роботи", "pj_h2": "Наші проєкти.", "pj_more": "УСЯ ГАЛЕРЕЯ →", "pj_p": "Комплексний ремонт, кухні, ванні та приміщення — усі роботи в одному місці.", "pj_btn": "Уся галерея →", "ab_eye": "Компанія", "ab_h2": "Робота, зроблена як слід.", "ab_p1": "OMA BUILDING — команда з ремонту в провінції Малага. Беремо на себе весь процес, щоб вам лишалося тільки вирішити, як має виглядати результат.", "ab_p2": "Без некерованих субпідрядників і кошторисів, що злітають. Один відповідальний за обʼєкт, прямий звʼязок і результат, яким пишаєшся.", "stat1": "Років досвіду", "stat2": "Зданих ремонтів", "stat3": "Власна робота", "stat4": "Роки гарантії", "eq_eye": "Хто ми", "eq_h2": "Команда за кожним обʼєктом.", "role1": "Власник", "role2": "Архітектор", "role3": "Дизайнер", "c_eye": "Поговоримо", "c_h2": "Маєте проєкт на думці?", "c_sub": "Розкажіть, що хочете відремонтувати — дамо кошторис без зобовʼязань.", "c_btn": "Напишіть у WhatsApp →", "foot_loc": "Ремонт і будівництво — Провінція Малага"}};
+const I18N={"es": {"n_serv": "Servicios", "n_proc": "Proceso", "n_proj": "Proyectos", "n_gal": "Galería", "n_team": "Equipo", "n_cont": "Contacto", "brand_sub": "REFORMAS", "h_kick": "Reformas · Construcción · Provincia de Málaga", "h_h1": "Transformamos espacios,<br>no solo <em>paredes</em>.", "h_lead": "Reformas integrales de viviendas y locales. Trabajo limpio, plazos que se cumplen y acabados de los que presumir.", "h_cta1": "Pedir presupuesto →", "h_cta2": "Ver proyectos", "s_eye": "Qué hacemos", "s_h2": "Un solo equipo para toda la obra.", "sv1t": "Reformas integrales", "sv1p": "Proyecto completo de principio a fin: derribo, obra, instalaciones y acabados.", "sv2t": "Cocinas", "sv2p": "Diseño y montaje de cocinas a medida, con mobiliario, encimeras e iluminación.", "sv3t": "Baños", "sv3p": "Renovación completa: fontanería, alicatado, sanitarios y mamparas.", "sv4t": "Pintura y acabados", "sv4p": "Alisado de paredes, pintura, pladur y detalles que marcan la diferencia.", "sv5t": "Albañilería", "sv5p": "Tabiques, solados, revestimientos y trabajos de obra a medida.", "sv6t": "Electricidad y fontanería", "sv6p": "Instalaciones nuevas y reparaciones con boletín y garantía.", "p_eye": "Cómo trabajamos", "p_h2": "De la idea a las llaves.", "st1t": "Consulta y presupuesto", "st1p": "Visitamos el espacio, escuchamos la idea y entregamos un presupuesto claro, sin sorpresas.", "st2t": "Diseño y planificación", "st2p": "Definimos materiales, plazos y planos. Sabes qué pasa cada semana.", "st3t": "Ejecución de obra", "st3p": "Un equipo, un responsable. Obra limpia y comunicación constante.", "st4t": "Entrega y garantía", "st4p": "Revisamos juntos el resultado. Entregamos con garantía por escrito.", "pj_eye": "Trabajos recientes", "pj_h2": "Nuestros proyectos.", "pj_more": "VER GALERÍA COMPLETA →", "pj_p": "Reformas integrales, cocinas, baños y locales — todos nuestros trabajos en un solo sitio.", "pj_btn": "Ver galería completa →", "ab_eye": "La empresa", "ab_h2": "Obra bien hecha, dicha en cristiano.", "ab_p1": "OMA BUILDING es un equipo de reformas afincado en la provincia de Málaga. Nos encargamos de todo el proceso para que tú solo tengas que decidir cómo quieres que quede.", "ab_p2": "Sin subcontratas descontroladas, sin presupuestos que se disparan. Un responsable de obra, comunicación directa y un resultado del que presumir.", "stat1": "Años de experiencia", "stat2": "Reformas entregadas", "stat3": "Obra propia", "stat4": "Años de garantía", "eq_eye": "Quiénes somos", "eq_h2": "El equipo detrás de la obra.", "role1": "Propietario", "role2": "Arquitecto", "role3": "Diseñador", "c_eye": "Hablemos", "c_h2": "¿Tienes un proyecto en mente?", "c_sub": "Cuéntanos qué quieres reformar y te damos un presupuesto sin compromiso.", "c_btn": "Escríbenos por WhatsApp →", "foot_loc": "Reformas &amp; construcción — Provincia de Málaga", "n_m3d": "3D", "m3_eye": "Modelos 3D", "m3_h2": "Entra en la obra antes de empezarla.", "m3_lead": "Reconstruimos cada reforma en tres dimensiones. Este es el piso del reportaje «Diseño &amp; confort»: salón-comedor con cocina abierta al fondo, hall con armarios a medida, dos dormitorios y baño tipo spa. Gira el piso, acércate y enciende las luces.", "m3_src": "Ver el reportaje original en Instagram", "m3_load": "Cargando modelo…", "m3_hint": "Arrastra para girar · rueda para acercar", "m3_v_all": "Vista general", "m3_v_salon": "Salón", "m3_v_cocina": "Cocina", "m3_v_d1": "Dormitorio 1", "m3_v_d2": "Dormitorio 2", "m3_v_bano": "Baño", "m3_night": "Encender luces", "m3_salon": "Salón-comedor", "m3_cocina": "Cocina", "m3_hall": "Hall", "m3_bano": "Baño", "m3_d1": "Dormitorio 1", "m3_d2": "Dormitorio 2"}, "en": {"n_serv": "Services", "n_proc": "Process", "n_proj": "Projects", "n_gal": "Gallery", "n_team": "Team", "n_cont": "Contact", "brand_sub": "RENOVATIONS", "h_kick": "Renovations · Construction · Province of Málaga", "h_h1": "We transform spaces,<br>not just <em>walls</em>.", "h_lead": "Full renovations of homes and commercial spaces. Clean work, deadlines that are met, and finishes worth showing off.", "h_cta1": "Get a quote →", "h_cta2": "See projects", "s_eye": "What we do", "s_h2": "One team for the whole job.", "sv1t": "Full renovations", "sv1p": "A complete project from start to finish: demolition, building work, installations and finishes.", "sv2t": "Kitchens", "sv2p": "Custom kitchen design and fitting, with cabinetry, worktops and lighting.", "sv3t": "Bathrooms", "sv3p": "Complete renovation: plumbing, tiling, sanitary ware and screens.", "sv4t": "Painting & finishes", "sv4p": "Wall smoothing, painting, plasterboard and the details that make the difference.", "sv5t": "Masonry", "sv5p": "Partitions, flooring, cladding and custom building work.", "sv6t": "Electrics & plumbing", "sv6p": "New installations and repairs with certification and warranty.", "p_eye": "How we work", "p_h2": "From idea to keys.", "st1t": "Consultation & quote", "st1p": "We visit the space, listen to your idea and give a clear quote, no surprises.", "st2t": "Design & planning", "st2p": "We define materials, timelines and plans. You know what happens each week.", "st3t": "Building work", "st3p": "One team, one lead. Clean work and constant communication.", "st4t": "Handover & warranty", "st4p": "We review the result together. We hand over with a written warranty.", "pj_eye": "Recent work", "pj_h2": "Our projects.", "pj_more": "SEE FULL GALLERY →", "pj_p": "Full renovations, kitchens, bathrooms and commercial spaces — all our work in one place.", "pj_btn": "See full gallery →", "ab_eye": "The company", "ab_h2": "Work done right, in plain terms.", "ab_p1": "OMA BUILDING is a renovation team based in the province of Málaga. We handle the whole process, so all you have to decide is how you want it to look.", "ab_p2": "No runaway subcontractors, no budgets that blow up. One site manager, direct communication and a result to be proud of.", "stat1": "Years of experience", "stat2": "Renovations delivered", "stat3": "In-house work", "stat4": "Years of warranty", "eq_eye": "Who we are", "eq_h2": "The team behind the work.", "role1": "Owner", "role2": "Architect", "role3": "Designer", "c_eye": "Let's talk", "c_h2": "Have a project in mind?", "c_sub": "Tell us what you want to renovate and we'll give you a quote, no commitment.", "c_btn": "Message us on WhatsApp →", "foot_loc": "Renovations & construction — Province of Málaga", "n_m3d": "3D", "m3_eye": "3D models", "m3_h2": "Walk the job before it starts.", "m3_lead": "We rebuild every renovation in three dimensions. This is the flat from the “Design &amp; comfort” feature: living-dining area with an open kitchen at the back, hall with fitted wardrobes, two bedrooms and a spa-style bathroom. Spin the flat, zoom in and turn the lights on.", "m3_src": "See the original feature on Instagram", "m3_load": "Loading model…", "m3_hint": "Drag to rotate · scroll to zoom", "m3_v_all": "Overview", "m3_v_salon": "Living room", "m3_v_cocina": "Kitchen", "m3_v_d1": "Bedroom 1", "m3_v_d2": "Bedroom 2", "m3_v_bano": "Bathroom", "m3_night": "Turn on lights", "m3_salon": "Living-dining", "m3_cocina": "Kitchen", "m3_hall": "Hall", "m3_bano": "Bathroom", "m3_d1": "Bedroom 1", "m3_d2": "Bedroom 2"}, "uk": {"n_serv": "Послуги", "n_proc": "Процес", "n_proj": "Проєкти", "n_gal": "Галерея", "n_team": "Команда", "n_cont": "Контакти", "brand_sub": "РЕМОНТИ", "h_kick": "Ремонт · Будівництво · Провінція Малага", "h_h1": "Перетворюємо простір,<br>а не лише <em>стіни</em>.", "h_lead": "Комплексний ремонт квартир і приміщень. Чиста робота, дотримання строків і оздоблення, яким хочеться хизуватися.", "h_cta1": "Отримати кошторис →", "h_cta2": "Дивитись проєкти", "s_eye": "Що ми робимо", "s_h2": "Одна команда на весь обʼєкт.", "sv1t": "Комплексний ремонт", "sv1p": "Повний проєкт від початку до кінця: демонтаж, роботи, комунікації та оздоблення.", "sv2t": "Кухні", "sv2p": "Проєктування й монтаж кухонь під замовлення — меблі, стільниці, освітлення.", "sv3t": "Ванні кімнати", "sv3p": "Повне оновлення: сантехніка, плитка, сантехвироби та перегородки.", "sv4t": "Фарбування й оздоблення", "sv4p": "Вирівнювання стін, фарбування, гіпсокартон і деталі, що вирішують.", "sv5t": "Мурування", "sv5p": "Перегородки, підлоги, облицювання та роботи під замовлення.", "sv6t": "Електрика й сантехніка", "sv6p": "Нові комунікації та ремонт із документами й гарантією.", "p_eye": "Як ми працюємо", "p_h2": "Від ідеї до ключів.", "st1t": "Консультація та кошторис", "st1p": "Оглядаємо простір, вислуховуємо ідею й даємо чіткий кошторис без сюрпризів.", "st2t": "Проєкт і планування", "st2p": "Визначаємо матеріали, строки та плани. Ви знаєте, що відбувається щотижня.", "st3t": "Виконання робіт", "st3p": "Одна команда, один відповідальний. Чиста робота й постійний звʼязок.", "st4t": "Здача та гарантія", "st4p": "Разом переглядаємо результат. Здаємо з письмовою гарантією.", "pj_eye": "Останні роботи", "pj_h2": "Наші проєкти.", "pj_more": "УСЯ ГАЛЕРЕЯ →", "pj_p": "Комплексний ремонт, кухні, ванні та приміщення — усі роботи в одному місці.", "pj_btn": "Уся галерея →", "ab_eye": "Компанія", "ab_h2": "Робота, зроблена як слід.", "ab_p1": "OMA BUILDING — команда з ремонту в провінції Малага. Беремо на себе весь процес, щоб вам лишалося тільки вирішити, як має виглядати результат.", "ab_p2": "Без некерованих субпідрядників і кошторисів, що злітають. Один відповідальний за обʼєкт, прямий звʼязок і результат, яким пишаєшся.", "stat1": "Років досвіду", "stat2": "Зданих ремонтів", "stat3": "Власна робота", "stat4": "Роки гарантії", "eq_eye": "Хто ми", "eq_h2": "Команда за кожним обʼєктом.", "role1": "Власник", "role2": "Архітектор", "role3": "Дизайнер", "c_eye": "Поговоримо", "c_h2": "Маєте проєкт на думці?", "c_sub": "Розкажіть, що хочете відремонтувати — дамо кошторис без зобовʼязань.", "c_btn": "Напишіть у WhatsApp →", "foot_loc": "Ремонт і будівництво — Провінція Малага", "n_m3d": "3D", "m3_eye": "3D-моделі", "m3_h2": "Зайдіть в обʼєкт ще до початку робіт.", "m3_lead": "Кожен ремонт ми відтворюємо у трьох вимірах. Це квартира з репортажу «Diseño &amp; confort»: вітальня-їдальня з відкритою кухнею в глибині, хол із вбудованими шафами, дві спальні та ванна в стилі спа. Обертайте квартиру, наближайте й вмикайте світло.", "m3_src": "Дивитись оригінальний пост в Instagram", "m3_load": "Завантаження моделі…", "m3_hint": "Тягніть, щоб обертати · колесо — масштаб", "m3_v_all": "Загальний вигляд", "m3_v_salon": "Вітальня", "m3_v_cocina": "Кухня", "m3_v_d1": "Спальня 1", "m3_v_d2": "Спальня 2", "m3_v_bano": "Ванна", "m3_night": "Увімкнути світло", "m3_salon": "Вітальня-їдальня", "m3_cocina": "Кухня", "m3_hall": "Хол", "m3_bano": "Ванна", "m3_d1": "Спальня 1", "m3_d2": "Спальня 2"}};
 function omaSetLang(l){
   if(!I18N[l])l='es';
   document.documentElement.lang=l;
@@ -657,6 +719,9 @@ omaSetLang((function(){try{return localStorage.getItem('oma_lang')}catch(e){retu
   [data-theme="dark"] .contact .link-row .v{color:var(--ink)}
   [data-theme="dark"] .contact .link-row:hover{background:rgba(255,255,255,.05)}
   [data-theme="dark"] .stat{background:var(--paper-2)}
+  [data-theme="dark"] .m3d{background:linear-gradient(168deg,#25081A,#170410)}
+  :root{--m3-pin-bg:rgba(27,5,16,.74); --m3-pin-fg:#FAF7F5}
+  [data-theme="dark"]{--m3-pin-bg:rgba(245,233,239,.88); --m3-pin-fg:#1B0510}
 
 </style>
 
@@ -687,6 +752,49 @@ omaSetLang((function(){try{return localStorage.getItem('oma_lang')}catch(e){retu
   }
 }
 </script>
+<!-- ══ 3D-МОДЕЛЬ КВАРТИРИ ══ -->
+<script type="module">
+(function(){
+  var root = document.getElementById('m3d');
+  var stage = document.getElementById('m3dStage');
+  if (!root || !stage) return;
+  var started = false;
+  async function boot(){
+    if (started) return; started = true;
+    try {
+      var m = await import('./oma-flat3d.js');
+      var api = await m.initOmaFlat3D(stage);
+      root.classList.add('is-ready');
+      var chips = document.querySelectorAll('#m3dBar [data-v]');
+      chips.forEach(function(b){
+        b.addEventListener('click', function(){
+          chips.forEach(function(o){ o.classList.remove('on'); });
+          b.classList.add('on');
+          api.setAuto(b.dataset.v === 'all');
+          api.focus(b.dataset.v);
+        });
+      });
+      var nb = document.getElementById('m3dNight');
+      nb.addEventListener('click', function(){
+        var v = !api.night; api.setNight(v); nb.classList.toggle('on', v);
+      });
+    } catch (err) {
+      console.warn('[OMA] 3D-модель недоступна:', err);
+      var st = document.getElementById('m3dState');
+      if (st) st.textContent = 'Tu navegador no puede mostrar el modelo 3D';
+    }
+  }
+  /* вантажимо лише коли секція наближається до екрана */
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(es, o){
+      if (es[0].isIntersecting) { o.disconnect(); boot(); }
+    }, { rootMargin: '400px' }).observe(root);
+  } else {
+    addEventListener('load', boot);
+  }
+})();
+</script>
+
 <script type="module">
 (function(){
   var el = document.getElementById('logo3d');
