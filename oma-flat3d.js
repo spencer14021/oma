@@ -379,7 +379,7 @@ export async function initOmaFlat3D(container, opts = {}) {
   await renderer.init();
 
   const canvas = renderer.domElement;
-  canvas.style.cssText = 'display:block;width:100%;height:100%;touch-action:none;cursor:grab';
+  canvas.style.cssText = 'display:block;width:100%;height:100%;touch-action:pan-y;cursor:grab';
   container.appendChild(canvas);
 
   const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 200);
@@ -965,12 +965,16 @@ export async function initOmaFlat3D(container, opts = {}) {
   }
 
   /* ── керування ────────────────────────────────────────────── */
-  let drag = null, pinch = 0;
+  let drag = null, pinch = 0, engaged = false;
   const pos = (e) => ({ x: e.clientX, y: e.clientY });
   canvas.addEventListener('pointerdown', (e) => {
     if (e.pointerType === 'touch' && e.isPrimary === false) return;
+    engaged = true;
     drag = pos(e); canvas.setPointerCapture(e.pointerId); canvas.style.cursor = 'grabbing';
   });
+  /* клік поза моделлю знову віддає колесо сторінці */
+  const release = (e) => { if (!canvas.contains(e.target)) engaged = false; };
+  document.addEventListener('pointerdown', release, true);
   canvas.addEventListener('pointermove', (e) => {
     if (!drag) return;
     const p = pos(e);
@@ -982,6 +986,8 @@ export async function initOmaFlat3D(container, opts = {}) {
   canvas.addEventListener('pointerup', stop);
   canvas.addEventListener('pointercancel', stop);
   canvas.addEventListener('wheel', (e) => {
+    /* поки модель не «активована» кліком — колесо гортає сторінку */
+    if (!engaged && !e.ctrlKey && !e.metaKey) return;
     e.preventDefault();
     goal.r = THREE.MathUtils.clamp(goal.r * (1 + Math.sign(e.deltaY) * 0.10), 3.4, 30);
   }, { passive: false });
@@ -1083,6 +1089,7 @@ export async function initOmaFlat3D(container, opts = {}) {
       running = false;
       renderer.setAnimationLoop(null);
       ro.disconnect(); io.disconnect();
+      document.removeEventListener('pointerdown', release, true);
       scene.traverse((o) => {
         if (o.geometry) o.geometry.dispose();
         if (o.material) (Array.isArray(o.material) ? o.material : [o.material]).forEach((m) => {
